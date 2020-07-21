@@ -60,6 +60,7 @@ function guessRandom() {
 //fix reset
 function resetGame() {
   btn.style.display = "block";
+  rund = 0;
   customAttempt.value = "";
   input.value = "";
   document.getElementById("guess").innerHTML = "";
