@@ -1,15 +1,15 @@
-// Ein Spiel, bei dem der Spieler die Zahl zwischen 1 und 100 erraten soll.
-// Der Spieler kann auch auswählen, wie viele Versuche er braucht, um die richtige Zahl zu finden.
-
 let input = document.getElementById("input");
 let fourAttempts = Number(document.getElementById("four"));
 let fiveAttempts = Number(document.getElementById("five"));
 let sixAttempts = Number(document.getElementById("six"));
 let custom = document.getElementById("custom"); //radio button custom
 let customAttempt = document.getElementById("custom-input");
-let randomNumber = Math.floor(Math.random() * 100 + 1); //1-100
-let newRandomNumber = Math.floor(Math.random() * 100 + 1);
+let randomNumber = getRandomNumber(); //1-100
 console.log("some random num " + randomNumber);
+
+function getRandomNumber() {
+  return Math.floor(Math.random() * 100 + 1);
+}
 
 // checked custom, show extra field
 function showField() {
@@ -25,16 +25,17 @@ function guessRandom() {
   //check if user's guess is < or > than my random num
   if (input.value != randomNumber) {
     if (input.value > randomNumber) {
-      document.getElementById("guess").innerHTML += `${rund + 1} - You need to guess lower than ${input.value}. Try again!` + "<br>";
+      document.getElementById("guess").innerHTML +=
+        `${rund + 1} - You need to guess lower than ${input.value}. Try again!` + "<br>";
     } else if (input.value < randomNumber) {
       document.getElementById("guess").innerHTML +=
-        `${rund + 1} - You need to guess higher than ${
-          input.value}. Try again!` + "<br>";
+        `${rund + 1} - You need to guess higher than ${input.value}. Try again!` + "<br>";
     }
   } else {
     document.getElementById("guess").innerHTML = "";
     document.getElementById("success").innerHTML = `Success! You got the right number in ${rund + 1}. attempt!`;
   }
+
   //attempts
   rund++;
 //   console.log(rund);
@@ -51,20 +52,21 @@ function guessRandom() {
     btn.style.display = "none";
     document.getElementById("guess").innerHTML = "Wrong :( No more guesses. Play again!";
   }
+
 //empty field
   if (input.value == "") {
     document.getElementById("guess").innerHTML = `You didn't enter a number. Try again!` + "<br>";
   }
 }
 
-//fix reset
+//reset
 function resetGame() {
+  randomNumber=getRandomNumber();
+  console.log("new random num " + getRandomNumber());
   btn.style.display = "block";
   rund = 0;
   customAttempt.value = "";
   input.value = "";
   document.getElementById("guess").innerHTML = "";
   document.getElementById("success").innerHTML = "";
-  // newRandomNumber;
-  console.log("new random num " + newRandomNumber);
 }
