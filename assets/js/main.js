@@ -53,10 +53,11 @@ function guessRandom() {
   }
 //empty field
   if (input.value == "") {
-    document.getElementById("guess").innerHTML = `You didn't enter a number. Try again!`;
+    document.getElementById("guess").innerHTML = `You didn't enter a number. Try again!` + "<br>";
   }
 }
 
+//fix reset
 function resetGame() {
   btn.style.display = "block";
   customAttempt.value = "";
